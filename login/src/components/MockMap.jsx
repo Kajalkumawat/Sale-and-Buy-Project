@@ -2,8 +2,15 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { IconPin } from "./Icons";
 
-export default function MockMap({ properties, searchedPin }) {
-  const [activeId, setActiveId] = useState(null);
+export default function MockMap({ properties, searchedPin, autoOpenId }) {
+  const [activeId, setActiveId] = useState(autoOpenId || null);
+  const [lastAutoOpenId, setLastAutoOpenId] = useState(autoOpenId);
+
+  if (autoOpenId !== lastAutoOpenId) {
+    setLastAutoOpenId(autoOpenId);
+    if (autoOpenId) setActiveId(autoOpenId);
+  }
+
   const active = properties.find((p) => p.id === activeId);
 
   return (

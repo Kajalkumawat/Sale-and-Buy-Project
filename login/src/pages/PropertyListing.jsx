@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import PropertyCard from "../components/PropertyCard";
 import MockMap from "../components/MockMap";
 import { properties } from "../data/mockData";
@@ -16,7 +16,8 @@ const categories = [
 
 export default function PropertyListing({ type, title, subtitle }) {
   const { shortlist, toggleShortlist } = useAppState();
-  const [search, setSearch] = useState("");
+  const [searchParams] = useSearchParams();
+  const [search, setSearch] = useState(() => searchParams.get("q") || "");
   const [category, setCategory] = useState("all");
   const [bhk, setBhk] = useState("all");
   const [sort, setSort] = useState("newest");

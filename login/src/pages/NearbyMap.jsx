@@ -1,7 +1,9 @@
 import { useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import MockMap from "../components/MockMap";
+import PropertyCard from "../components/PropertyCard";
 import { properties, findLocation, pincodes } from "../data/mockData";
+import { useAppState } from "../context/AppState";
 import { IconSearch, IconPin } from "../components/Icons";
 
 const filters = [
@@ -15,6 +17,7 @@ const filters = [
 export default function NearbyMap() {
   const [searchParams, setSearchParams] = useSearchParams();
   const initialQuery = searchParams.get("pincode") || "";
+  const { shortlist, toggleShortlist } = useAppState();
   const [active, setActive] = useState("all");
   const [query, setQuery] = useState(initialQuery);
   const [searched, setSearched] = useState(() => findLocation(initialQuery));
@@ -56,7 +59,7 @@ export default function NearbyMap() {
         <div className="section-head">
           <div>
             <h2>मेरे आसपास प्रॉपर्टी</h2>
-            <p className="muted">पिनकोड या शहर डालें, उस लोकेशन को मैप पर देखें</p>
+            <p className="muted">पिनकोड या शहर डालें, उस लोकेशन की प्रॉपर्टी पूरी डिटेल और फोटो के साथ देखें</p>
           </div>
           <div className="filter-tabs">
             {filters.map((f) => (
@@ -82,7 +85,7 @@ export default function NearbyMap() {
 
         {searched && (
           <div className="location-found">
-            📍 <strong>{searched.city}, {searched.state}</strong> ({searched.code}) मिला — मैप पर हाइलाइट किया गया
+            📍 <strong>{searched.city}, {searched.state}</strong> ({searched.code}) मिला — नीचे इस लोकेशन की प्रॉपर्टी देखें
           </div>
         )}
         {notFound && (
@@ -91,7 +94,7 @@ export default function NearbyMap() {
           </div>
         )}
 
-        <MockMap properties={list} searchedPin={searched} />
+        <MockMap properties={list} searchedPin={searched} autoOpenId={searched && list.length ? list[0].id : undefined} />
 
         {searched && list.length === 0 && (
           <div className="empty-state">इस लोकेशन में चुने गए फ़िल्टर से कोई प्रॉपर्टी नहीं मिली — "सभी" फ़िल्टर आज़माएं।</div>
@@ -103,6 +106,27 @@ export default function NearbyMap() {
           </span>
           <span>पिन पर क्लिक करके कीमत और विवरण देखें</span>
         </div>
+
+        {searched && list.length > 0 && (
+          <div className="location-results">
+            <div className="section-head" style={{ marginTop: 28 }}>
+              <div>
+                <h2>
+                  {searched.city} में {list.length} प्रॉपर्टी मिलीं
+                </h2>
+                <p className="muted">फोटो, कीमत और पूरी जानकारी के लिए "विवरण देखें" पर क्लिक करें</p>
+              </div>
+              <Link to={`/buy?q=${encodeURIComponent(searched.city)}`} className="outline-btn">
+                और प्रॉपर्टी खोजें
+              </Link>
+            </div>
+            <div className="card-grid">
+              {list.map((p) => (
+                <PropertyCard key={p.id} property={p} liked={shortlist.includes(p.id)} onToggleLike={toggleShortlist} />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
