@@ -1,0 +1,137 @@
+.dash-root{display:flex;min-height:100vh}
+
+/* sidebar */
+.dash-sidebar{width:260px;flex-shrink:0;background:#0b1c4a;color:#c6cef0;display:flex;flex-direction:column;padding:20px 16px;position:sticky;top:0;height:100vh;overflow-y:auto}
+.dash-brand{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.dash-brand .logo{color:#fff}
+.dash-sidebar-close{display:none;background:none;border:none;color:#c6cef0}
+.dash-role-tag{font-size:12px;color:#8b97c8;text-transform:uppercase;letter-spacing:0.06em;margin:6px 4px 18px}
+.dash-nav{display:flex;flex-direction:column;gap:4px;flex:1}
+.dash-nav a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;color:#c6cef0;font-size:14px}
+.dash-nav a:hover{background:rgba(255,255,255,0.06)}
+.dash-nav a.active{background:var(--primary);color:#fff}
+.dash-nav-exit{display:flex;align-items:center;gap:10px;padding:12px;border-top:1px solid rgba(255,255,255,0.1);margin-top:12px;font-size:13.5px;color:#9fabd6}
+.dash-nav-exit:hover{color:#fff}
+.dash-overlay{display:none}
+
+/* topbar */
+.dash-main{flex:1;min-width:0;display:flex;flex-direction:column}
+.dash-topbar{display:flex;align-items:center;gap:16px;padding:14px 28px;background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10}
+.dash-menu-btn{display:none;background:none;border:none;color:var(--primary-dark)}
+.dash-topbar-title{font-weight:700;font-size:16px;flex:1}
+.dash-topbar-actions{display:flex;align-items:center;gap:14px}
+.icon-btn{background:#f3f6fb;border:none;width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--primary-dark)}
+.dash-user-chip{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:var(--primary-dark)}
+.avatar-dot{width:32px;height:32px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+.dash-content{padding:24px 28px 48px;max-width:1280px;width:100%;margin:0 auto}
+.dash-content h1{font-size:22px;margin:0 0 4px}
+.dash-content .page-lead{color:var(--muted);margin:0 0 20px;font-size:14px}
+
+/* panels/cards used inside dashboards */
+.panel{background:#fff;border-radius:14px;border:1px solid var(--border);padding:20px;margin-bottom:20px}
+.panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;gap:12px;flex-wrap:wrap}
+.panel-head h3{margin:0}
+.two-col{display:grid;grid-template-columns:2fr 1fr;gap:20px;align-items:start}
+
+/* tables */
+.table-wrap{overflow-x:auto}
+.data-table{width:100%;border-collapse:collapse;font-size:13.5px}
+.data-table th{text-align:left;color:var(--muted);font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:0.03em;padding:10px 12px;border-bottom:1px solid var(--border);white-space:nowrap}
+.data-table td{padding:12px;border-bottom:1px solid var(--border);vertical-align:middle;white-space:nowrap}
+.data-table tr:last-child td{border-bottom:none}
+.row-actions{display:flex;gap:8px}
+.row-actions button{background:#f3f6fb;border:none;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--primary-dark)}
+.row-actions button.danger{color:var(--danger)}
+.row-actions button:hover{background:#e9edff}
+
+/* status pill tabs (My Listings etc.) */
+.pill-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.pill-tabs button{border:1px solid var(--border);background:#fff;padding:8px 16px;border-radius:999px;font-size:13px;color:var(--muted)}
+.pill-tabs button.active{background:var(--primary-dark);color:#fff;border-color:var(--primary-dark)}
+
+/* listing manager grid mirrors card-grid but 3 cols with status ribbon already in prop-card */
+.listing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.listing-grid .prop-card .body{padding-bottom:10px}
+.listing-stats-row{display:flex;gap:14px;padding:10px 14px;border-top:1px solid var(--border);font-size:12px;color:var(--muted)}
+.listing-stats-row span{display:flex;align-items:center;gap:4px}
+.listing-actions{display:flex;gap:8px;padding:12px 14px 14px}
+.listing-actions button, .listing-actions a{flex:1;text-align:center;justify-content:center}
+
+/* multi-step add property form */
+.stepper{display:flex;gap:10px;margin-bottom:22px;flex-wrap:wrap}
+.stepper .step-pill{display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:#f3f6fb;color:var(--muted);font-size:13px}
+.stepper .step-pill .num{width:22px;height:22px;border-radius:50%;background:#dbe0ee;color:#5a6272;display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:700}
+.stepper .step-pill.active{background:var(--primary);color:#fff}
+.stepper .step-pill.active .num{background:#fff;color:var(--primary)}
+.stepper .step-pill.done{background:#e7f9ee;color:#0f8a3f}
+.stepper .step-pill.done .num{background:#0f8a3f;color:#fff}
+.form-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.chip-select{display:flex;gap:8px;flex-wrap:wrap}
+.chip-select button{border:1px solid var(--border);background:#fff;padding:8px 14px;border-radius:10px;font-size:13px;color:#22314f}
+.chip-select button.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.upload-drop{border:2px dashed var(--border);border-radius:12px;padding:28px;text-align:center;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:8px}
+.upload-drop svg{color:var(--primary)}
+.step-actions{display:flex;justify-content:space-between;margin-top:20px}
+
+/* leads / enquiries / chat */
+.lead-item{display:flex;justify-content:space-between;gap:14px;padding:14px;border:1px solid var(--border);border-radius:12px;margin-bottom:10px;align-items:flex-start;flex-wrap:wrap}
+.lead-item .lead-main{flex:1;min-width:220px}
+.lead-item h4{margin:0 0 4px}
+.lead-item p{margin:0;color:#22314f;font-size:13.5px}
+.lead-item .lead-meta{color:var(--muted);font-size:12px;margin-top:6px}
+.lead-actions{display:flex;gap:8px}
+
+.chat-shell{display:grid;grid-template-columns:280px 1fr;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:#fff;min-height:480px}
+.chat-list{border-right:1px solid var(--border);overflow-y:auto}
+.chat-list-item{display:flex;align-items:center;gap:10px;padding:14px;border-bottom:1px solid var(--border);cursor:pointer}
+.chat-list-item.active{background:#f3f6fb}
+.chat-list-item strong{display:block;font-size:13.5px}
+.chat-list-item span{font-size:12px;color:var(--muted)}
+.chat-window{display:flex;flex-direction:column}
+.chat-window-head{padding:14px 18px;border-bottom:1px solid var(--border);font-weight:600}
+.chat-messages{flex:1;padding:18px;display:flex;flex-direction:column;gap:10px;overflow-y:auto;max-height:400px}
+.chat-bubble{max-width:70%;padding:10px 14px;border-radius:14px;font-size:13.5px}
+.chat-bubble.me{align-self:flex-end;background:var(--primary);color:#fff;border-bottom-right-radius:4px}
+.chat-bubble.them{align-self:flex-start;background:#f3f6fb;color:#22314f;border-bottom-left-radius:4px}
+.chat-input-row{display:flex;gap:10px;padding:14px;border-top:1px solid var(--border)}
+.chat-input-row input{flex:1;padding:11px 14px;border-radius:999px;border:1px solid var(--border)}
+
+/* boost packages */
+.boost-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+
+/* KYC / verification cards */
+.kyc-card{display:flex;justify-content:space-between;align-items:center;padding:16px;border:1px solid var(--border);border-radius:12px;margin-bottom:10px;flex-wrap:wrap;gap:12px}
+.kyc-card .kyc-main strong{display:block;margin-bottom:4px}
+.kyc-card .kyc-main span{color:var(--muted);font-size:12.5px}
+.kyc-actions{display:flex;gap:8px}
+.kyc-actions .approve{background:var(--success);color:#fff;border:none;padding:8px 14px;border-radius:8px;font-size:13px}
+.kyc-actions .reject{background:#fde8e8;color:#c22;border:none;padding:8px 14px;border-radius:8px;font-size:13px}
+
+/* mini bar chart for admin revenue */
+.bar-chart{display:flex;align-items:flex-end;gap:14px;height:180px;padding:10px 0}
+.bar-chart .bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;height:100%;justify-content:flex-end}
+.bar-chart .bar{width:100%;max-width:36px;background:linear-gradient(180deg,var(--primary),#2536e0);border-radius:6px 6px 0 0}
+.bar-chart .bar-label{font-size:11.5px;color:var(--muted)}
+
+.empty-state{text-align:center;padding:40px 20px;color:var(--muted)}
+.empty-state svg{margin-bottom:10px}
+
+@media (max-width:960px){
+  .two-col{grid-template-columns:1fr}
+  .listing-grid{grid-template-columns:repeat(2,1fr)}
+  .boost-grid{grid-template-columns:1fr}
+  .chat-shell{grid-template-columns:1fr}
+  .chat-list{max-height:200px}
+  .form-grid-2{grid-template-columns:1fr}
+}
+
+@media (max-width:720px){
+  .dash-sidebar{position:fixed;left:-280px;top:0;bottom:0;z-index:50;transition:left .25s ease;box-shadow:0 0 0 rgba(0,0,0,0)}
+  .dash-sidebar.open{left:0;box-shadow:20px 0 40px rgba(0,0,0,0.2)}
+  .dash-sidebar-close{display:block}
+  .dash-overlay{display:block;position:fixed;inset:0;background:rgba(7,20,58,0.5);z-index:40}
+  .dash-menu-btn{display:flex}
+  .dash-content{padding:18px 16px 40px}
+  .listing-grid{grid-template-columns:1fr}
+  .dash-user-chip span{display:none}
+}

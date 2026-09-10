@@ -1,4 +1,3 @@
-import React from "react";
 import "./Home.css";
 import prop1 from "./assets/prop1.svg";
 import prop2 from "./assets/prop2.svg";
