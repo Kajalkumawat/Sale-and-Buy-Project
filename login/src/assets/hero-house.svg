@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" width="640" height="520">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#dce8ff"/>
+      <stop offset="1" stop-color="#f3f6fb"/>
+    </linearGradient>
+    <linearGradient id="roof" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1f2c66"/>
+      <stop offset="1" stop-color="#0b1c4a"/>
+    </linearGradient>
+    <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#e9eefc"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="640" height="520" fill="url(#sky)"/>
+  <circle cx="520" cy="90" r="46" fill="#ffe9a8" opacity="0.9"/>
+  <ellipse cx="320" cy="470" rx="280" ry="30" fill="#c8d4ee" opacity="0.6"/>
+
+  <!-- ground -->
+  <rect x="0" y="430" width="640" height="90" fill="#d7e3c8"/>
+
+  <!-- main house body -->
+  <rect x="150" y="240" width="300" height="200" fill="url(#wall)" stroke="#c3ccdf" stroke-width="2"/>
+  <polygon points="140,245 300,140 460,245" fill="url(#roof)"/>
+  <rect x="292" y="150" width="16" height="34" fill="#0b1c4a"/>
+
+  <!-- garage wing -->
+  <rect x="60" y="300" width="110" height="140" fill="#eef1ff" stroke="#c3ccdf" stroke-width="2"/>
+  <polygon points="52,305 115,258 178,305" fill="#3146ff"/>
+  <rect x="80" y="350" width="70" height="90" fill="#3146ff" opacity="0.85"/>
+  <rect x="90" y="360" width="50" height="30" fill="#dce8ff" opacity="0.7"/>
+
+  <!-- door -->
+  <rect x="270" y="360" width="60" height="80" rx="4" fill="#3146ff"/>
+  <circle cx="317" cy="402" r="3" fill="#ffd23f"/>
+
+  <!-- windows -->
+  <rect x="180" y="280" width="55" height="55" rx="4" fill="#a9c1ff"/>
+  <rect x="180" y="280" width="55" height="55" rx="4" fill="none" stroke="#3146ff" stroke-width="3"/>
+  <line x1="207" y1="280" x2="207" y2="335" stroke="#3146ff" stroke-width="3"/>
+  <line x1="180" y1="307" x2="235" y2="307" stroke="#3146ff" stroke-width="3"/>
+
+  <rect x="365" y="280" width="55" height="55" rx="4" fill="#a9c1ff"/>
+  <rect x="365" y="280" width="55" height="55" rx="4" fill="none" stroke="#3146ff" stroke-width="3"/>
+  <line x1="392" y1="280" x2="392" y2="335" stroke="#3146ff" stroke-width="3"/>
+  <line x1="365" y1="307" x2="420" y2="307" stroke="#3146ff" stroke-width="3"/>
+
+  <rect x="180" y="365" width="45" height="45" rx="4" fill="#ffe9a8"/>
+  <rect x="180" y="365" width="45" height="45" rx="4" fill="none" stroke="#0b1c4a" stroke-width="2"/>
+
+  <!-- fence / path -->
+  <path d="M150 440 L150 470 L450 470 L450 440" fill="none" stroke="#c3ccdf" stroke-width="3"/>
+  <rect x="270" y="440" width="60" height="30" fill="#f3e7c9"/>
+
+  <!-- tree -->
+  <rect x="500" y="360" width="14" height="70" fill="#8a5a34"/>
+  <circle cx="507" cy="340" r="42" fill="#7fb069"/>
+  <circle cx="470" cy="365" r="30" fill="#8fc17b"/>
+  <circle cx="545" cy="365" r="30" fill="#8fc17b"/>
+
+  <!-- small bush -->
+  <circle cx="120" cy="430" r="20" fill="#7fb069"/>
+  <circle cx="145" cy="435" r="16" fill="#8fc17b"/>
+</svg>
