@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" width="400" height="260">
+  <defs>
+    <linearGradient id="v2sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd9a8"/>
+      <stop offset="1" stop-color="#ffe9cf"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="260" fill="url(#v2sky)"/>
+  <circle cx="335" cy="55" r="30" fill="#ffb15c" opacity="0.9"/>
+  <rect y="205" width="400" height="55" fill="#cfe0b8"/>
+
+  <!-- flat-roof modern villa -->
+  <rect x="70" y="120" width="260" height="90" fill="#ffffff" stroke="#c3ccdf" stroke-width="2"/>
+  <rect x="60" y="108" width="280" height="16" fill="#0b1c4a"/>
+  <rect x="90" y="140" width="70" height="70" fill="#3146ff"/>
+  <rect x="180" y="140" width="50" height="40" fill="#a9c1ff" stroke="#0b1c4a" stroke-width="2"/>
+  <rect x="245" y="140" width="60" height="40" fill="#a9c1ff" stroke="#0b1c4a" stroke-width="2"/>
+
+  <!-- second low wing -->
+  <rect x="20" y="165" width="55" height="45" fill="#eef1ff" stroke="#c3ccdf" stroke-width="2"/>
+  <rect x="30" y="178" width="20" height="20" fill="#a9c1ff"/>
+
+  <!-- pool -->
+  <rect x="185" y="195" width="110" height="16" rx="4" fill="#6fc2e0"/>
+
+  <!-- palm tree -->
+  <rect x="345" y="150" width="8" height="55" fill="#8a5a34"/>
+  <path d="M349 150 C330 135,320 140,315 130 C332 132,342 138,349 150Z" fill="#3fa15a"/>
+  <path d="M349 150 C368 135,378 140,383 130 C366 132,356 138,349 150Z" fill="#3fa15a"/>
+  <path d="M349 150 C345 128,350 118,345 108 C355 118,354 132,349 150Z" fill="#3fa15a"/>
+</svg>

@@ -2,13 +2,21 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { IconPin } from "./Icons";
 
-export default function MockMap({ properties }) {
+export default function MockMap({ properties, searchedPin }) {
   const [activeId, setActiveId] = useState(null);
   const active = properties.find((p) => p.id === activeId);
 
   return (
     <div className="mock-map">
       <div className="mock-map-grid" />
+
+      {searchedPin && (
+        <div className="map-search-pin" style={{ top: `${searchedPin.lat}%`, left: `${searchedPin.lng}%` }}>
+          <span className="pulse" />
+          <span className="dot" />
+        </div>
+      )}
+
       {properties.map((p) => (
         <button
           key={p.id}
