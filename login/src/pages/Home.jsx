@@ -1,5 +1,5 @@
 import { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import heroHouse from "../assets/hero-house.svg";
 import PropertyCard from "../components/PropertyCard";
 import { properties, featuredListingIds } from "../data/mockData";
@@ -43,13 +43,17 @@ const panels = [
 const heroTabs = ["Buy (खरीदें)", "Sell (बेचें)", "Rent (किराये पर)"];
 
 export default function Home() {
+  const navigate = useNavigate();
   const [activeHeroTab, setActiveHeroTab] = useState(0);
+  const [locationQuery, setLocationQuery] = useState("");
   const { shortlist, toggleShortlist } = useAppState();
 
   const featured = properties.filter((p) => featuredListingIds.includes(p.id));
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const q = locationQuery.trim();
+    navigate(q ? `/nearby?pincode=${encodeURIComponent(q)}` : "/nearby");
   };
 
   return (
@@ -70,7 +74,11 @@ export default function Home() {
               </div>
 
               <div className="search-row">
-                <input placeholder="शहर, इलाके या पिनकोड" />
+                <input
+                  placeholder="शहर, इलाके या पिनकोड (जैसे 302001)"
+                  value={locationQuery}
+                  onChange={(e) => setLocationQuery(e.target.value)}
+                />
                 <select>
                   <option>सभी प्रकार</option>
                   <option>फ्लैट</option>
@@ -83,6 +91,7 @@ export default function Home() {
                 </button>
               </div>
             </form>
+            <p className="hero-hint">पिनकोड डालकर खोजें और उस लोकेशन को मैप पर देखें — उदाहरण: 302001, 400001, 411001</p>
             <Link to="/nearby" className="hero-nearby-link">
               <IconMap /> मेरे आसपास प्रॉपर्टी मैप पर देखें
             </Link>

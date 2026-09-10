@@ -198,6 +198,31 @@ export const properties = [
   },
 ];
 
+// Demo pincode -> location lookup (no live geocoding API is reachable from this
+// environment, so this stands in for one). Coordinates are percentage
+// positions on the mock map, matching the property they correspond to.
+export const pincodes = [
+  { code: "342001", city: "जोधपुर", state: "राजस्थान", lat: 42, lng: 28 },
+  { code: "411001", city: "पुणे", state: "महाराष्ट्र", lat: 55, lng: 45 },
+  { code: "282001", city: "आगरा", state: "उत्तर प्रदेश", lat: 30, lng: 62 },
+  { code: "110001", city: "दिल्ली", state: "दिल्ली", lat: 68, lng: 33 },
+  { code: "122001", city: "गुड़गांव", state: "हरियाणा", lat: 20, lng: 70 },
+  { code: "302001", city: "जयपुर", state: "राजस्थान", lat: 40, lng: 50 },
+  { code: "380001", city: "अहमदाबाद", state: "गुजरात", lat: 78, lng: 55 },
+  { code: "400001", city: "मुंबई", state: "महाराष्ट्र", lat: 60, lng: 20 },
+];
+
+export const findLocation = (query) => {
+  const q = (query || "").trim();
+  if (!q) return null;
+  return (
+    pincodes.find((p) => p.code === q) ||
+    pincodes.find((p) => p.city === q) ||
+    pincodes.find((p) => p.city.includes(q) || q.includes(p.city)) ||
+    null
+  );
+};
+
 export const propertyImageFor = (p) => propertyImages[p.imgKey || p.category];
 
 const altVariantKey = { villa: "villa2", villa2: "villa", apartment: "apartment2", apartment2: "apartment", plot: "plot2", plot2: "plot", commercial: "commercial" };
