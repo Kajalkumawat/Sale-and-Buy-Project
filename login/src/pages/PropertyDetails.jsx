@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { properties, owners, propertyImageFor } from "../data/mockData";
+import { properties, owners, propertyGalleryFor } from "../data/mockData";
 import { useAppState } from "../context/AppState";
 import PropertyCard from "../components/PropertyCard";
 import Badge from "../components/Badge";
@@ -25,6 +25,7 @@ export default function PropertyDetails() {
   const [visitRequested, setVisitRequested] = useState(false);
   const [enquirySent, setEnquirySent] = useState(false);
   const [message, setMessage] = useState("");
+  const [activeShot, setActiveShot] = useState(0);
 
   if (!property) {
     return (
@@ -37,6 +38,7 @@ export default function PropertyDetails() {
   const owner = owners.find((o) => o.id === property.ownerId);
   const liked = shortlist.includes(property.id);
   const similar = properties.filter((p) => p.id !== property.id && p.category === property.category).slice(0, 4);
+  const gallery = propertyGalleryFor(property);
 
   const handleEnquiry = (e) => {
     e.preventDefault();
@@ -49,7 +51,7 @@ export default function PropertyDetails() {
         <div className="details-grid">
           <div>
             <div className="details-gallery">
-              <img src={propertyImageFor(property)} alt={property.title} />
+              <img src={gallery[activeShot]} alt={property.title} />
               <div className="details-badges">
                 <Badge status={property.type === "sale" ? "blue" : "amber"} tone={property.type === "sale" ? "blue" : "amber"}>
                   {property.type === "sale" ? "सेल" : "रेन्ट"}
@@ -57,6 +59,20 @@ export default function PropertyDetails() {
                 {property.verified && <Badge tone="green"><IconCheck /> वेरिफाइड ओनर</Badge>}
               </div>
             </div>
+            {gallery.length > 1 && (
+              <div className="gallery-thumbs">
+                {gallery.map((src, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    className={`gallery-thumb ${activeShot === i ? "active" : ""}`}
+                    onClick={() => setActiveShot(i)}
+                  >
+                    <img src={src} alt={`${property.title} फोटो ${i + 1}`} />
+                  </button>
+                ))}
+              </div>
+            )}
 
             <div className="details-title-row">
               <h1>{property.title}</h1>
@@ -117,7 +133,7 @@ export default function PropertyDetails() {
           <div>
             <div className="owner-card">
               <div className="owner-head">
-                <div className="owner-avatar" style={{ background: owner?.avatarColor }}>
+                <div className="owner-avatar" style={{ backgroundColor: owner?.avatarColor }}>
                   {owner?.name?.[0]}
                 </div>
                 <div>

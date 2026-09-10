@@ -182,6 +182,11 @@ a{color:inherit;text-decoration:none}
 .details-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:28px;align-items:start}
 .details-gallery{border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(11,21,40,0.08);position:relative}
 .details-gallery img{width:100%;height:380px;object-fit:cover;display:block}
+.gallery-thumbs{display:flex;gap:10px;margin-top:10px}
+.gallery-thumb{padding:0;border-radius:10px;overflow:hidden;border:2px solid transparent;background:none;width:88px;height:64px;flex-shrink:0}
+.gallery-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.gallery-thumb.active{border-color:var(--primary)}
+.gallery-thumb:hover{border-color:rgba(49,70,255,0.4)}
 .details-badges{position:absolute;top:14px;left:14px;display:flex;gap:8px}
 .details-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin:20px 0 8px;flex-wrap:wrap}
 .details-title-row h1{margin:0;font-size:26px}
@@ -195,7 +200,7 @@ a{color:inherit;text-decoration:none}
 .amenities-grid span{display:flex;align-items:center;gap:8px;font-size:13.5px;color:#22314f}
 .owner-card{background:#fff;border-radius:16px;padding:20px;border:1px solid var(--border);position:sticky;top:96px}
 .owner-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
-.owner-avatar{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:18px}
+.owner-avatar{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:18px;background-image:linear-gradient(135deg,rgba(255,255,255,0.35),rgba(0,0,0,0.12));box-shadow:inset 0 -2px 4px rgba(0,0,0,0.15),0 3px 8px rgba(11,21,40,0.18)}
 .owner-contact-row{display:flex;flex-direction:column;gap:10px;margin:14px 0}
 .owner-contact-row a, .owner-contact-row div{display:flex;align-items:center;gap:8px;font-size:13.5px;color:#22314f;background:#f3f6fb;padding:9px 10px;border-radius:8px}
 .enquiry-mini textarea{width:100%;margin-top:10px}
