@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-
-const roles = [
-  { key: "buyer", label: "बायर", to: "/buyer/dashboard" },
-  { key: "seller", label: "सेलर/ओनर", to: "/seller/dashboard" },
-  { key: "agent", label: "एजेंट/डीलर", to: "/agent/dashboard" },
-  { key: "admin", label: "एडमिन", to: "/admin/dashboard" },
-];
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Login() {
+  const { language } = useLanguage();
+  const isHi = language === "hi";
+  const roles = [
+    { key: "buyer", label: isHi ? "बायर" : "Buyer", to: "/buyer/dashboard" },
+    { key: "seller", label: isHi ? "सेलर/ओनर" : "Seller/Owner", to: "/seller/dashboard" },
+    { key: "agent", label: isHi ? "एजेंट/डीलर" : "Agent/Dealer", to: "/agent/dashboard" },
+    { key: "admin", label: isHi ? "एडमिन" : "Admin", to: "/admin/dashboard" },
+  ];
+
   const navigate = useNavigate();
   const [role, setRole] = useState("buyer");
   const [mode, setMode] = useState("otp");
@@ -32,8 +35,8 @@ export default function Login() {
     <div className="page-section">
       <div className="wh-inner">
         <div className="form-card">
-          <h2>लॉगिन करें</h2>
-          <p className="muted">अपने अकाउंट टाइप के अनुसार लॉगिन करें</p>
+          <h2>{isHi ? "लॉगिन करें" : "Log in"}</h2>
+          <p className="muted">{isHi ? "अपने अकाउंट टाइप के अनुसार लॉगिन करें" : "Log in according to your account type"}</p>
 
           <div className="role-toggle">
             {roles.map((r) => (
@@ -45,10 +48,10 @@ export default function Login() {
 
           <div className="role-toggle">
             <button type="button" className={mode === "otp" ? "active" : ""} onClick={() => { setMode("otp"); setStep(1); }}>
-              Mobile OTP
+              {isHi ? "मोबाइल OTP" : "Mobile OTP"}
             </button>
             <button type="button" className={mode === "password" ? "active" : ""} onClick={() => { setMode("password"); setStep(1); }}>
-              Email/Password
+              {isHi ? "ईमेल / पासवर्ड" : "Email / Password"}
             </button>
           </div>
 
@@ -56,7 +59,7 @@ export default function Login() {
             {mode === "otp" ? (
               step === 1 ? (
                 <div className="form-field">
-                  <label>मोबाइल नंबर</label>
+                  <label>{isHi ? "मोबाइल नंबर" : "Mobile number"}</label>
                   <input
                     type="tel"
                     placeholder="+91 98765 43210"
@@ -67,7 +70,7 @@ export default function Login() {
                 </div>
               ) : (
                 <div className="form-field">
-                  <label>OTP दर्ज करें</label>
+                  <label>{isHi ? "OTP दर्ज करें" : "Enter OTP"}</label>
                   <div className="otp-row">
                     {[0, 1, 2, 3].map((i) => (
                       <input
@@ -83,30 +86,30 @@ export default function Login() {
                     ))}
                   </div>
                   <p className="muted" style={{ marginTop: 10, fontSize: 12.5 }}>
-                    {identifier} पर OTP भेजा गया (डेमो — कोई भी 4 अंक दर्ज करें)
+                    {isHi ? `${identifier} पर OTP भेजा गया (डेमो — कोई भी 4 अंक दर्ज करें)` : `OTP sent to ${identifier} (demo — enter any 4 digits)`}
                   </p>
                 </div>
               )
             ) : (
               <>
                 <div className="form-field">
-                  <label>ईमेल</label>
+                  <label>{isHi ? "ईमेल" : "Email"}</label>
                   <input type="email" placeholder="you@example.com" value={identifier} onChange={(e) => setIdentifier(e.target.value)} required />
                 </div>
                 <div className="form-field">
-                  <label>पासवर्ड</label>
+                  <label>{isHi ? "पासवर्ड" : "Password"}</label>
                   <input type="password" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} required />
                 </div>
               </>
             )}
 
             <button className="solid-btn full" type="submit">
-              {mode === "otp" && step === 1 ? "OTP भेजें" : "लॉगिन करें"}
+              {mode === "otp" && step === 1 ? (isHi ? "OTP भेजें" : "Send OTP") : isHi ? "लॉगिन करें" : "Log in"}
             </button>
           </form>
 
           <div className="form-foot">
-            अकाउंट नहीं है? <Link to="/register">रजिस्टर करें</Link>
+            {isHi ? "अकाउंट नहीं है?" : "Don’t have an account?"} <Link to="/register">{isHi ? "रजिस्टर करें" : "Register"}</Link>
           </div>
         </div>
       </div>

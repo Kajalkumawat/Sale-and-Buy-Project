@@ -1,18 +1,30 @@
 import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext";
 import { IconHouseLogo, IconLogin, IconMenu, IconClose } from "./Icons";
 
-const navItems = [
-  { to: "/", label: "होम", end: true },
-  { to: "/buy", label: "खरीदें" },
-  { to: "/rent", label: "किराये पर" },
-  { to: "/seller/dashboard", label: "सेलर पैनल" },
-  { to: "/buyer/dashboard", label: "बायर पैनल" },
-  { to: "/contact", label: "संपर्क" },
-];
-
 export default function Header() {
+  const { language, toggleLanguage } = useLanguage();
   const [open, setOpen] = useState(false);
+
+  const navItems =
+    language === "hi"
+      ? [
+          { to: "/", label: "होम", end: true },
+          { to: "/buy", label: "खरीदें" },
+          { to: "/rent", label: "किराये पर" },
+          { to: "/seller/dashboard", label: "सेलर पैनल" },
+          { to: "/buyer/dashboard", label: "बायर पैनल" },
+          { to: "/contact", label: "संपर्क" },
+        ]
+      : [
+          { to: "/", label: "Home", end: true },
+          { to: "/buy", label: "Buy" },
+          { to: "/rent", label: "Rent" },
+          { to: "/seller/dashboard", label: "Seller Panel" },
+          { to: "/buyer/dashboard", label: "Buyer Panel" },
+          { to: "/contact", label: "Contact" },
+        ];
 
   return (
     <header className="site-header">
@@ -37,14 +49,17 @@ export default function Header() {
         </nav>
 
         <div className="actions">
+          <button type="button" className="lang-toggle" onClick={toggleLanguage} aria-label="Toggle language">
+            {language === "hi" ? "English" : "हिंदी"}
+          </button>
           <Link to="/login" className="ghost-btn">
             <IconLogin />
-            <span>लॉगिन</span>
+            <span>{language === "hi" ? "लॉगिन" : "Login"}</span>
           </Link>
           <Link to="/register" className="solid-btn">
-            रजिस्टर
+            {language === "hi" ? "रजिस्टर" : "Register"}
           </Link>
-          <button className="nav-toggle" onClick={() => setOpen((o) => !o)} aria-label="मेनू">
+          <button className="nav-toggle" onClick={() => setOpen((o) => !o)} aria-label={language === "hi" ? "मेनू" : "Menu"}>
             {open ? <IconClose /> : <IconMenu />}
           </button>
         </div>
