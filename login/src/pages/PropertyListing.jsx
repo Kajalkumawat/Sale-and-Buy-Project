@@ -4,9 +4,10 @@ import PropertyCard from "../components/PropertyCard";
 import MockMap from "../components/MockMap";
 import { properties } from "../data/mockData";
 import { useAppState } from "../context/AppState";
+import { useLanguage } from "../context/LanguageContext";
 import { IconGrid, IconMap } from "../components/Icons";
 
-const categories = [
+const categoriesHi = [
   { key: "all", label: "सभी प्रकार" },
   { key: "apartment", label: "अपार्टमेंट" },
   { key: "villa", label: "विला" },
@@ -14,8 +15,19 @@ const categories = [
   { key: "commercial", label: "कॉमर्शियल" },
 ];
 
+const categoriesEn = [
+  { key: "all", label: "All types" },
+  { key: "apartment", label: "Apartment" },
+  { key: "villa", label: "Villa" },
+  { key: "plot", label: "Plot" },
+  { key: "commercial", label: "Commercial" },
+];
+
 export default function PropertyListing({ type, title, subtitle }) {
+  const { language } = useLanguage();
   const { shortlist, toggleShortlist } = useAppState();
+  const isHi = language === "hi";
+  const categories = isHi ? categoriesHi : categoriesEn;
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
   const [bhk, setBhk] = useState("all");
@@ -47,10 +59,10 @@ export default function PropertyListing({ type, title, subtitle }) {
           <p>{subtitle}</p>
           <div className="filter-tabs" style={{ marginTop: 16, width: "fit-content" }}>
             <Link to="/buy" className={type === "sale" ? "active" : ""}>
-              खरीदें
+              {isHi ? "खरीदें" : "Buy"}
             </Link>
             <Link to="/rent" className={type === "rent" ? "active" : ""}>
-              किराये पर
+              {isHi ? "किराये पर" : "Rent"}
             </Link>
           </div>
         </div>
@@ -59,7 +71,11 @@ export default function PropertyListing({ type, title, subtitle }) {
       <section className="page-section">
         <div className="wh-inner">
           <div className="filter-bar">
-            <input placeholder="शहर, इलाके या प्रॉपर्टी नाम खोजें" value={search} onChange={(e) => setSearch(e.target.value)} />
+            <input
+              placeholder={isHi ? "शहर, इलाके या प्रॉपर्टी नाम खोजें" : "Search city, locality or property name"}
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
             <select value={category} onChange={(e) => setCategory(e.target.value)}>
               {categories.map((c) => (
                 <option key={c.key} value={c.key}>
@@ -68,28 +84,30 @@ export default function PropertyListing({ type, title, subtitle }) {
               ))}
             </select>
             <select value={bhk} onChange={(e) => setBhk(e.target.value)}>
-              <option value="all">सभी BHK</option>
+              <option value="all">{isHi ? "सभी BHK" : "All BHK"}</option>
               <option value="1">1 BHK</option>
               <option value="2">2 BHK</option>
               <option value="3">3 BHK</option>
               <option value="4">4 BHK</option>
             </select>
             <select value={sort} onChange={(e) => setSort(e.target.value)}>
-              <option value="newest">नवीनतम पहले</option>
-              <option value="price-low">कीमत: कम से ज्यादा</option>
-              <option value="price-high">कीमत: ज्यादा से कम</option>
+              <option value="newest">{isHi ? "नवीनतम पहले" : "Newest first"}</option>
+              <option value="price-low">{isHi ? "कीमत: कम से ज्यादा" : "Price: low to high"}</option>
+              <option value="price-high">{isHi ? "कीमत: ज्यादा से कम" : "Price: high to low"}</option>
             </select>
             <div className="view-toggle">
-              <button type="button" className={view === "grid" ? "active" : ""} onClick={() => setView("grid")} aria-label="ग्रिड व्यू">
+              <button type="button" className={view === "grid" ? "active" : ""} onClick={() => setView("grid")} aria-label={isHi ? "ग्रिड व्यू" : "Grid view"}>
                 <IconGrid />
               </button>
-              <button type="button" className={view === "map" ? "active" : ""} onClick={() => setView("map")} aria-label="मैप व्यू">
+              <button type="button" className={view === "map" ? "active" : ""} onClick={() => setView("map")} aria-label={isHi ? "मैप व्यू" : "Map view"}>
                 <IconMap />
               </button>
             </div>
           </div>
 
-          <p className="results-count">{filtered.length} प्रॉपर्टी मिलीं</p>
+          <p className="results-count">
+            {filtered.length} {isHi ? "प्रॉपर्टी मिलीं" : "properties found"}
+          </p>
 
           {view === "grid" ? (
             filtered.length ? (
@@ -99,7 +117,7 @@ export default function PropertyListing({ type, title, subtitle }) {
                 ))}
               </div>
             ) : (
-              <div className="empty-state">कोई प्रॉपर्टी नहीं मिली। फ़िल्टर बदलकर पुनः प्रयास करें।</div>
+              <div className="empty-state">{isHi ? "कोई प्रॉपर्टी नहीं मिली। फ़िल्टर बदलकर पुनः प्रयास करें।" : "No properties found. Please try changing the filters."}</div>
             )
           ) : (
             <MockMap properties={filtered} />
